@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorry</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: #f0f8ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .flower {
+        position: absolute;
+        font-size: 20px;
+        animation: float 10s linear infinite,
+          sway 3s infinite alternate ease-in-out;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) translateX(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-110vh)
+            translateX(calc(-50vw + 100vw * var(--x-move)));
+          opacity: 0;
+        }
+      }
+
+      @keyframes sway {
+        0% {
+          transform: translateX(-10px) rotate(0deg);
+        }
+        50% {
+          transform: translateX(10px) rotate(2deg);
+        }
+        100% {
+          transform: translateX(-10px) rotate(-2deg);
+        }
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
+        background-color: #ff4081;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #e91e63;
+      }
+
+      .error-message {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+        font-size: 18px;
+        color: #ff4081;
+      }
+    </style>
+    <script type="text/javascript">
+      // Check device type
+      document.addEventListener("DOMContentLoaded", () => {
+        if (window.innerWidth < 768) {
+          document.body.innerHTML =
+            '<div class="error-message">⚠️ This page is only available on laptops/desktops. Please try again from a larger screen. 💻</div>';
+          return;
+        }
+
+        const numberOfFlowers = 50;
+        for (let i = 0; i < numberOfFlowers; i++) {
+          createFlower();
+        }
+      });
+
+      function showSorryMessage() {
+        alert(
+          "Sorry no 😔 for whatever I have done, just tell what's wrong plzz, i really really dont know what did i do "
+        );
+      }
+
+      function createFlower() {
+        const flower = document.createElement("div");
+        flower.classList.add("flower");
+        flower.innerHTML = "🌸";
+        document.body.appendChild(flower);
+
+        const size = Math.random() * 25 + 15;
+        flower.style.fontSize = `${size}px`;
+        flower.style.left = `${Math.random() * 100}vw`;
+        flower.style.top = `${Math.random() * 100}vh`;
+
+        flower.style.setProperty("--x-move", Math.random() * 2 - 1);
+
+        const duration = Math.random() * 5 + 5;
+        const delay = Math.random() * 3;
+        flower.style.animationDuration = `${duration}s`;
+        flower.style.animationDelay = `${delay}s`;
+
+        setTimeout(() => {
+          flower.remove();
+          createFlower();
+        }, duration * 1000);
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="showSorryMessage()">Click Me</button>
+  </body>
+</html>
