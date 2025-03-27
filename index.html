@@ -63,35 +63,20 @@
       button:hover {
         background-color: #e91e63;
       }
-
-      .error-message {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        padding: 20px;
-        font-size: 18px;
-        color: #ff4081;
-      }
     </style>
     <script type="text/javascript">
-      // Check device type
-      document.addEventListener("DOMContentLoaded", () => {
-        if (window.innerWidth < 768) {
-          document.body.innerHTML =
-            '<div class="error-message">⚠️ This page is only available on laptops/desktops. Please try again from a larger screen. 💻</div>';
-          return;
-        }
+      function showSorryMessage() {
+        alert(
+          "Sorry no 😔 for whatever I have done, just tell what's wrong plzz"
+        );
+      }
 
+      document.addEventListener("DOMContentLoaded", () => {
         const numberOfFlowers = 50;
         for (let i = 0; i < numberOfFlowers; i++) {
           createFlower();
         }
       });
-
-      function showSorryMessage() {
-        alert(
-          "Sorry no 😔 for whatever I have done, just tell what's wrong plzz, i really really dont know what did i do "
-        );
-      }
 
       function createFlower() {
         const flower = document.createElement("div");
@@ -100,16 +85,16 @@
         document.body.appendChild(flower);
 
         const size = Math.random() * 25 + 15;
-        flower.style.fontSize = `${size}px`;
-        flower.style.left = `${Math.random() * 100}vw`;
-        flower.style.top = `${Math.random() * 100}vh`;
+        flower.style.fontSize = size + "px";
+        flower.style.left = Math.random() * 100 + "vw";
+        flower.style.top = Math.random() * 100 + "vh";
 
         flower.style.setProperty("--x-move", Math.random() * 2 - 1);
 
         const duration = Math.random() * 5 + 5;
         const delay = Math.random() * 3;
-        flower.style.animationDuration = `${duration}s`;
-        flower.style.animationDelay = `${delay}s`;
+        flower.style.animationDuration = duration + "s";
+        flower.style.animationDelay = delay + "s";
 
         setTimeout(() => {
           flower.remove();
